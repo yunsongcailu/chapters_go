@@ -1,0 +1,22 @@
+syntax = "proto3";
+package stream_proto;
+option go_package = "demo_stream/stream_proto/stream_gen;streampb";
+import "google/protobuf/timestamp.proto";
+
+// StreamDemoServer
+service StreamDemoServer {
+	// 服务端流模式示例 关键词 stream
+	rpc GetStream(StreamRequest) returns (stream StreamResponse) {}
+	// 客户端流模式
+	rpc PutStream(stream StreamRequest) returns (StreamResponse) {}
+	// 双向流模式
+	rpc AllStream(stream StreamRequest) returns (stream StreamResponse) {}
+}
+
+message StreamRequest {
+	string name = 1;
+}
+
+message StreamResponse {
+	string data = 1;
+}
